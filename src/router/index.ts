@@ -20,7 +20,7 @@ const routes: RouteRecordRaw[] = [
 ]
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHistory('/tensorflow'),
   routes,
 })
 export default router
