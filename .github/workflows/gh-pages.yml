@@ -1,0 +1,36 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main # 触发推送事件时，检查主分支是否有更新。
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v2
+        with:
+          node-version: '21.x'
+
+      # 安装 pnpm
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 8
+
+      - name: Install dependencies
+        run: pnpm install # 安装所需依赖。
+
+      - name: Build
+        run: pnpm build # 执行构建命令。
+
+      - name: Deploy - zhongxuyang.github.io
+        uses: peaceiris/actions-gh-pages@v3.7.0
+        with:
+          github_token: ${{ secrets.ACCESS_TOKEN }}
+          publish_dir: dist # 指定要发布的目录，这里是 build 目录。

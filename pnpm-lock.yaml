@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@tensorflow-models/hand-pose-detection':
+        specifier: ^2.0.1
+        version: 2.0.1(@mediapipe/hands@0.4.1675469240)(@tensorflow/tfjs-backend-webgl@4.20.0(@tensorflow/tfjs-core@4.20.0))(@tensorflow/tfjs-converter@4.20.0(@tensorflow/tfjs-core@4.20.0))(@tensorflow/tfjs-core@4.20.0)
       '@tensorflow-models/handpose':
         specifier: ^0.1.0
         version: 0.1.0(@tensorflow/tfjs-backend-webgl@4.20.0(@tensorflow/tfjs-core@4.20.0))(@tensorflow/tfjs-converter@4.20.0(@tensorflow/tfjs-core@4.20.0))(@tensorflow/tfjs-core@4.20.0)
@@ -20,10 +23,16 @@ importers:
       vue:
         specifier: ^3.4.29
         version: 3.4.31(typescript@5.5.3)
+      vue-router:
+        specifier: ^4.4.0
+        version: 4.4.0(vue@3.4.31(typescript@5.5.3))
     devDependencies:
+      '@types/node':
+        specifier: ^20.14.10
+        version: 20.14.10
       '@vitejs/plugin-vue':
         specifier: ^5.0.5
-        version: 5.0.5(vite@5.3.3)(vue@3.4.31(typescript@5.5.3))
+        version: 5.0.5(vite@5.3.3(@types/node@20.14.10))(vue@3.4.31(typescript@5.5.3))
       autoprefixer:
         specifier: ^10.4.19
         version: 10.4.19(postcss@8.4.39)
@@ -38,7 +47,7 @@ importers:
         version: 5.5.3
       vite:
         specifier: ^5.3.1
-        version: 5.3.3
+        version: 5.3.3(@types/node@20.14.10)
       vue-tsc:
         specifier: ^2.0.21
         version: 2.0.26(typescript@5.5.3)
@@ -226,6 +235,9 @@ packages:
   '@jridgewell/trace-mapping@0.3.25':
     resolution: {integrity: sha512-vNk6aEwybGtawWmy/PzwnGDOjCkLWSD2wqvjGGAgOAwCGWySYXfYoxt00IJkTF+8Lb57DwOb3Aa0o9CApepiYQ==, tarball: https://registry.npmjs.org/@jridgewell/trace-mapping/-/trace-mapping-0.3.25.tgz}
 
+  '@mediapipe/hands@0.4.1675469240':
+    resolution: {integrity: sha512-GxoZvL1mmhJxFxjuyj7vnC++JIuInGznHBin5c7ZSq/RbcnGyfEcJrkM/bMu5K1Mz/2Ko+vEX6/+wewmEHPrHg==, tarball: https://registry.npmjs.org/@mediapipe/hands/-/hands-0.4.1675469240.tgz}
+
   '@nodelib/fs.scandir@2.1.5':
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==, tarball: https://registry.npmjs.org/@nodelib/fs.scandir/-/fs.scandir-2.1.5.tgz}
     engines: {node: '>= 8'}
@@ -322,6 +334,14 @@ packages:
     cpu: [x64]
     os: [win32]
 
+  '@tensorflow-models/hand-pose-detection@2.0.1':
+    resolution: {integrity: sha512-zRA+jz2qOq5FMcyqSFxaQyi6T4YNbMbQhd6SQMI791FQ8yYj23kLgYa73g2NssR5AmM/2ATu9Vcjnf7LUrVLOQ==, tarball: https://registry.npmjs.org/@tensorflow-models/hand-pose-detection/-/hand-pose-detection-2.0.1.tgz}
+    peerDependencies:
+      '@mediapipe/hands': ~0.4.0
+      '@tensorflow/tfjs-backend-webgl': ^4.9.0
+      '@tensorflow/tfjs-converter': ^4.9.0
+      '@tensorflow/tfjs-core': ^4.9.0
+
   '@tensorflow-models/handpose@0.1.0':
     resolution: {integrity: sha512-ziLkR2c2eaylyi/UAaQqvg34nPiw3qL8Pa8ihXyFB3jvlZFXIqVkMJAAaqFBBUjzHMD76x7dhmSxscivCrbekg==}
     peerDependencies:
@@ -355,6 +375,9 @@ packages:
 
   '@types/long@4.0.2':
     resolution: {integrity: sha512-MqTGEo5bj5t157U6fA/BiDynNkn0YknVdh48CMPkTSpFTVmvao5UQmm7uEF6xBEo7qIMAlY/JSleYaE6VOdpaA==, tarball: https://registry.npmjs.org/@types/long/-/long-4.0.2.tgz}
+
+  '@types/node@20.14.10':
+    resolution: {integrity: sha512-MdiXf+nDuMvY0gJKxyfZ7/6UFsETO7mGKF54MVD/ekJS6HdFtpZFBgrh6Pseu64XTb2MLyFPlbW6hj8HYRQNOQ==, tarball: https://registry.npmjs.org/@types/node/-/node-20.14.10.tgz}
 
   '@types/offscreencanvas@2019.3.0':
     resolution: {integrity: sha512-esIJx9bQg+QYF0ra8GnvfianIY8qWB0GBx54PK5Eps6m+xTj86KLavHv6qDhzKcu5UUOgNfJ2pWaIIV7TRUd9Q==, tarball: https://registry.npmjs.org/@types/offscreencanvas/-/offscreencanvas-2019.3.0.tgz}
@@ -392,6 +415,9 @@ packages:
 
   '@vue/compiler-ssr@3.4.31':
     resolution: {integrity: sha512-RtefmITAje3fJ8FSg1gwgDhdKhZVntIVbwupdyZDSifZTRMiWxWehAOTCc8/KZDnBOcYQ4/9VWxsTbd3wT0hAA==}
+
+  '@vue/devtools-api@6.6.3':
+    resolution: {integrity: sha512-0MiMsFma/HqA6g3KLKn+AGpL1kgKhFWszC9U29NfpWK5LE7bjeXxySWJrOJ77hBz+TBrBQ7o4QJqbPbqbs8rJw==, tarball: https://registry.npmjs.org/@vue/devtools-api/-/devtools-api-6.6.3.tgz}
 
   '@vue/language-core@2.0.26':
     resolution: {integrity: sha512-/lt6SfQ3O1yDAhPsnLv9iSUgXd1dMHqUm/t3RctfqjuwQf1LnftZ414X3UBn6aXT4MiwXWtbNJ4Z0NZWwDWgJQ==}
@@ -919,6 +945,9 @@ packages:
     engines: {node: '>=14.17'}
     hasBin: true
 
+  undici-types@5.26.5:
+    resolution: {integrity: sha512-JlCMO+ehdEIKqlFxk6IfVoAUVmgz7cU7zD/h9XZ0qzeosSHmUJVOzSQvvYSYWXkFXC+IfLKSIffhv0sVZup6pA==, tarball: https://registry.npmjs.org/undici-types/-/undici-types-5.26.5.tgz}
+
   update-browserslist-db@1.1.0:
     resolution: {integrity: sha512-EdRAaAyk2cUE1wOf2DkEhzxqOQvFOoRJFNS6NeyJ01Gp2beMRpBAINjM2iDXE3KCuKhwnvHIQCJm6ThL2Z+HzQ==, tarball: https://registry.npmjs.org/update-browserslist-db/-/update-browserslist-db-1.1.0.tgz}
     hasBin: true
@@ -958,6 +987,11 @@ packages:
 
   vscode-uri@3.0.8:
     resolution: {integrity: sha512-AyFQ0EVmsOZOlAnxoFOGOq1SQDWAB7C6aqMGS23svWAllfOaxbuFvcT8D1i8z3Gyn8fraVeZNNmN6e9bxxXkKw==}
+
+  vue-router@4.4.0:
+    resolution: {integrity: sha512-HB+t2p611aIZraV2aPSRNXf0Z/oLZFrlygJm+sZbdJaW6lcFqEDQwnzUBXn+DApw+/QzDU/I9TeWx9izEjTmsA==, tarball: https://registry.npmjs.org/vue-router/-/vue-router-4.4.0.tgz}
+    peerDependencies:
+      vue: ^3.2.0
 
   vue-template-compiler@2.7.16:
     resolution: {integrity: sha512-AYbUWAJHLGGQM7+cNTELw+KsOG9nl2CnSv467WobS5Cv9uk3wFcnr1Etsz2sEIHEZvw1U+o9mRlEO6QbZvUPGQ==}
@@ -1116,6 +1150,8 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.0
 
+  '@mediapipe/hands@0.4.1675469240': {}
+
   '@nodelib/fs.scandir@2.1.5':
     dependencies:
       '@nodelib/fs.stat': 2.0.5
@@ -1179,6 +1215,15 @@ snapshots:
   '@rollup/rollup-win32-x64-msvc@4.18.1':
     optional: true
 
+  '@tensorflow-models/hand-pose-detection@2.0.1(@mediapipe/hands@0.4.1675469240)(@tensorflow/tfjs-backend-webgl@4.20.0(@tensorflow/tfjs-core@4.20.0))(@tensorflow/tfjs-converter@4.20.0(@tensorflow/tfjs-core@4.20.0))(@tensorflow/tfjs-core@4.20.0)':
+    dependencies:
+      '@mediapipe/hands': 0.4.1675469240
+      '@tensorflow/tfjs-backend-webgl': 4.20.0(@tensorflow/tfjs-core@4.20.0)
+      '@tensorflow/tfjs-converter': 4.20.0(@tensorflow/tfjs-core@4.20.0)
+      '@tensorflow/tfjs-core': 4.20.0
+      rimraf: 3.0.2
+      tslib: 2.6.3
+
   '@tensorflow-models/handpose@0.1.0(@tensorflow/tfjs-backend-webgl@4.20.0(@tensorflow/tfjs-core@4.20.0))(@tensorflow/tfjs-converter@4.20.0(@tensorflow/tfjs-core@4.20.0))(@tensorflow/tfjs-core@4.20.0)':
     dependencies:
       '@tensorflow/tfjs-backend-webgl': 4.20.0(@tensorflow/tfjs-core@4.20.0)
@@ -1221,15 +1266,19 @@ snapshots:
 
   '@types/long@4.0.2': {}
 
+  '@types/node@20.14.10':
+    dependencies:
+      undici-types: 5.26.5
+
   '@types/offscreencanvas@2019.3.0': {}
 
   '@types/offscreencanvas@2019.7.3': {}
 
   '@types/seedrandom@2.4.34': {}
 
-  '@vitejs/plugin-vue@5.0.5(vite@5.3.3)(vue@3.4.31(typescript@5.5.3))':
+  '@vitejs/plugin-vue@5.0.5(vite@5.3.3(@types/node@20.14.10))(vue@3.4.31(typescript@5.5.3))':
     dependencies:
-      vite: 5.3.3
+      vite: 5.3.3(@types/node@20.14.10)
       vue: 3.4.31(typescript@5.5.3)
 
   '@volar/language-core@2.4.0-alpha.15':
@@ -1273,6 +1322,8 @@ snapshots:
     dependencies:
       '@vue/compiler-dom': 3.4.31
       '@vue/shared': 3.4.31
+
+  '@vue/devtools-api@6.6.3': {}
 
   '@vue/language-core@2.0.26(typescript@5.5.3)':
     dependencies:
@@ -1809,6 +1860,8 @@ snapshots:
 
   typescript@5.5.3: {}
 
+  undici-types@5.26.5: {}
+
   update-browserslist-db@1.1.0(browserslist@4.23.2):
     dependencies:
       browserslist: 4.23.2
@@ -1817,15 +1870,21 @@ snapshots:
 
   util-deprecate@1.0.2: {}
 
-  vite@5.3.3:
+  vite@5.3.3(@types/node@20.14.10):
     dependencies:
       esbuild: 0.21.5
       postcss: 8.4.39
       rollup: 4.18.1
     optionalDependencies:
+      '@types/node': 20.14.10
       fsevents: 2.3.3
 
   vscode-uri@3.0.8: {}
+
+  vue-router@4.4.0(vue@3.4.31(typescript@5.5.3)):
+    dependencies:
+      '@vue/devtools-api': 6.6.3
+      vue: 3.4.31(typescript@5.5.3)
 
   vue-template-compiler@2.7.16:
     dependencies:

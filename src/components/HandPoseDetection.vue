@@ -11,9 +11,9 @@
 import {ref, onMounted} from 'vue';
 import '@tensorflow/tfjs-backend-webgl';
 import '@tensorflow/tfjs-converter';
-import * as handpose from '@tensorflow-models/handpose';
+import * as handPoseDetection from '@tensorflow-models/hand-pose-detection';
 import Webcam from './VueWebcam.vue'
-import {drawHand} from '~/utils/drawing'
+import {drawHand} from '~/utils/drawing-for-hand-pose-detection'
 
 const webcamRef = ref<Webcam>(null);
 const canvasRef = ref<HTMLCanvasElement>(null);
@@ -25,7 +25,13 @@ const videoConstraints = {
 };
 
 const loadHandpose = async () => {
-  const net: object = await handpose.load();
+  const model = handPoseDetection.SupportedModels.MediaPipeHands;
+  const detectorConfig = {
+    runtime: 'mediapipe', // or 'tfjs',
+    solutionPath: 'https://cdn.jsdelivr.net/npm/@mediapipe/hands',
+    modelType: 'full'
+  }
+  const net: object = await handPoseDetection.createDetector(model, detectorConfig)
 
   setInterval(() => {
     detectHand(net);
@@ -46,10 +52,9 @@ const detectHand = async (net: any) => {
     canvas!.width = videoWidth;
     canvas!.height = videoHeight;
 
-    const hand = await net.estimateHands(video);
-
-    console.log(hand)
-    drawHand(hand, canvas!.getContext('2d'));
+    const hands = await net.estimateHands(video)
+    console.log(hands)
+    drawHand(hands, canvas!.getContext('2d'));
   }
 };
 
