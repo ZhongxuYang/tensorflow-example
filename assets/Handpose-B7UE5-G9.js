@@ -1,4 +1,4 @@
-import{l as on,f as un,T as j,t as w,a as hn,e as cn,c as dn,b as ln,d as A,s as B,g as z,h as C,m as T,i as G,j as fn,r as R,k as rn,n as L,o as K,p as pn,q as M,_ as mn}from"./VueWebcam.vue_vue_type_script_setup_true_lang-DbGbSyaH.js";import{d as vn,r as U,o as gn,c as Pn,a as q,b as bn,e as yn}from"./index-BCHSxlwH.js";/**
+import{l as on,f as un,T as j,t as w,a as hn,e as cn,c as dn,b as ln,d as A,s as B,g as z,h as C,m as T,i as G,j as fn,r as R,k as rn,n as L,o as K,p as pn,q as M,_ as mn}from"./VueWebcam.vue_vue_type_script_setup_true_lang-Cx6Rwz6K.js";import{d as vn,r as U,o as gn,c as Pn,a as q,b as bn,e as yn}from"./index-CEMysVEd.js";/**
     * @license
     * Copyright 2023 Google LLC. All Rights Reserved.
     * Licensed under the Apache License, Version 2.0 (the "License");
