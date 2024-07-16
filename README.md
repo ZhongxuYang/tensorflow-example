@@ -1,5 +1,5 @@
 # Tensorflow Project
-> Hand gesture detection using Tensorflow and @tensorflow-models/handpose
+> Example of detection using Tensorflow and @tensorflow-models/*
 
 ## Installation
 ```sh
