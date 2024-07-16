@@ -14,7 +14,7 @@ const fingerLookupIndices: fingerLookupType = {
   pinky: [0, 17, 18, 19, 20],
 }; // for rendering each finger as a polyline
 
-export const drawHand: Function = (predictions: any, ctx: CanvasRenderingContext2D) => {
+export const drawPose: Function = (predictions: any, ctx: CanvasRenderingContext2D) => {
   if (predictions.length > 0) {
     /*eslint array-callback-return: "off"*/
     predictions.map((prediction: any) => {

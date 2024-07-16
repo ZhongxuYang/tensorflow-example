@@ -16,13 +16,12 @@ function userMedia() {
 
 const startRecord = () => {
   if (userMedia()) {
-    var constraints = {
+    const constraints = {
       video: true,
       audio: false
     };
-    var media = navigator.getUserMedia(constraints, function (stream) {
+    const media = navigator.getUserMedia(constraints, function (stream) {
       var v = videoRef.value
-      var url = window.URL || window.webkitURL;
       v.srcObject = stream;
       v.play();
     }, function (error) {

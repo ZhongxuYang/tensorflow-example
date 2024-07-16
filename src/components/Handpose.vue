@@ -1,5 +1,5 @@
 <template>
-  <div className="flex items-center justify-center h-screen w-full bg-blue-100">
+  <div className="flex items-center justify-center w-full flex-grow">
     <div className="ml-auto mr-auto relative w-[1280px] h-[720px]">
       <Webcam ref="webcamRef" className="w-full h-full absolute" />
       <canvas ref="canvasRef" className="w-full h-full top-0 left-0 absolute z-10" />
@@ -12,17 +12,16 @@ import {ref, onMounted} from 'vue';
 import '@tensorflow/tfjs-backend-webgl';
 import '@tensorflow/tfjs-converter';
 import * as handpose from '@tensorflow-models/handpose';
-import Webcam from './VueWebcam.vue'
-import {drawHand} from '~/utils/drawing'
+import Webcam from './common/VueWebcam.vue'
+import {drawPose} from '~/utils/drawing-for-handpose'
+import useLoadModel from '~/hooks/useLoadModel'
 
-const webcamRef = ref<Webcam>(null);
-const canvasRef = ref<HTMLCanvasElement>(null);
+const {resetLoading, loaded} = useLoadModel()
+resetLoading()
 
-const videoConstraints = {
-  width: 1280,
-  height: 720,
-  facingMode: 'user',
-};
+const webcamRef = ref(null);
+const canvasRef = ref<HTMLCanvasElement>(null)
+
 
 const loadHandpose = async () => {
   const net: object = await handpose.load();
@@ -47,9 +46,8 @@ const detectHand = async (net: any) => {
     canvas!.height = videoHeight;
 
     const hand = await net.estimateHands(video);
-
-    console.log(hand)
-    drawHand(hand, canvas!.getContext('2d'));
+    loaded()
+    drawPose(hand, canvas!.getContext('2d'));
   }
 };
 
