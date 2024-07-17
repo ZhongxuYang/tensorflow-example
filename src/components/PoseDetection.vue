@@ -137,7 +137,7 @@ onMounted(async () => {
   loadHandpose()
 })
 onUnmounted(() => {
-  detector.dispose();
+  detector?.dispose();
   detector = null;
   cancelAnimationFrame(requestID);
 })
