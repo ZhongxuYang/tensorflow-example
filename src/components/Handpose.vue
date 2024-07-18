@@ -1,17 +1,27 @@
+<script lang="ts">
+export default {name: 'handpose-component'}
+</script>
+
 <template>
   <div className="flex items-center justify-center w-full flex-grow">
     <div className="ml-auto mr-auto relative w-[1280px] h-[720px]">
-      <Webcam ref="webcamRef" className="w-full h-full absolute" />
-      <canvas ref="canvasRef" className="w-full h-full top-0 left-0 absolute z-10" />
+      <Webcam
+        ref="webcamRef"
+        class-name="w-full h-full absolute"
+      />
+      <canvas
+        ref="canvasRef"
+        className="w-full h-full top-0 left-0 absolute z-10"
+      />
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import {ref, onMounted} from 'vue';
-import '@tensorflow/tfjs-backend-webgl';
-import '@tensorflow/tfjs-converter';
-import * as handpose from '@tensorflow-models/handpose';
+import {ref, onMounted} from 'vue'
+import '@tensorflow/tfjs-backend-webgl'
+import * as handpose from '@tensorflow-models/handpose'
+import {HandPose} from '@tensorflow-models/handpose'
 import Webcam from './common/VueWebcam.vue'
 import {drawPose} from '~/utils/drawing-for-handpose'
 import useLoadModel from '~/hooks/useLoadModel'
@@ -19,37 +29,38 @@ import useLoadModel from '~/hooks/useLoadModel'
 const {resetLoading, loaded} = useLoadModel()
 resetLoading()
 
-const webcamRef = ref(null);
-const canvasRef = ref<HTMLCanvasElement>(null)
-
+const webcamRef = ref<InstanceType<typeof Webcam>>()
+const canvasRef = ref<HTMLCanvasElement>()
 
 const loadHandpose = async () => {
-  const net: object = await handpose.load();
+  const net = await handpose.load()
 
   setInterval(() => {
-    detectHand(net);
-  }, 1);
-};
+    detectHand(net)
+  }, 1)
+}
 
-const detectHand = async (net: any) => {
-  const webcam = webcamRef.value;
-  const canvas = canvasRef.value;
+const detectHand = async (net: HandPose) => {
+  const webcam = webcamRef.value
+  const canvas = canvasRef.value
   if (typeof webcam !== 'undefined' && webcam !== null && webcam.video!.readyState === 4) {
-    const video: any = webcam.video;
-    const videoWidth: number = video!.videoWidth;
-    const videoHeight: number = video!.videoHeight;
+    const video = webcam.video
+    const videoWidth: number = video!.videoWidth
+    const videoHeight: number = video!.videoHeight
 
-    video.width = videoWidth;
-    video.height = videoHeight;
+    video.width = videoWidth
+    video.height = videoHeight
 
-    canvas!.width = videoWidth;
-    canvas!.height = videoHeight;
+    canvas!.width = videoWidth
+    canvas!.height = videoHeight
 
-    const hand = await net.estimateHands(video);
+    const ctx = canvas!.getContext('2d') as CanvasRenderingContext2D
+
+    const hand = await net.estimateHands(video)
     loaded()
-    drawPose(hand, canvas!.getContext('2d'));
+    drawPose(hand, ctx)
   }
-};
+}
 
 onMounted(loadHandpose)
 

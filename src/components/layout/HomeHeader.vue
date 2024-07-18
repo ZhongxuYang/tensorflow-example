@@ -2,7 +2,11 @@
   <div :class="`home-header ${bgColor}`">
     <div class="flex justify-between">
       <ul class="links">
-        <li v-for="it in dataList" :key="it.path" :title="it.description">
+        <li
+          v-for="it in dataList"
+          :key="it.path"
+          :title="it.description"
+        >
           <router-link :to="it.path">
             {{ it.title }}
           </router-link>
@@ -10,22 +14,32 @@
       </ul>
 
       <div>
-        <a :href="currentData?.doc" target="_blank" class="text-blue-500">Document</a>
+        <a
+          :href="currentData?.doc"
+          target="_blank"
+          class="text-blue-500"
+        >Document</a>
       </div>
     </div>
     <div class="text-center text-gray-400">
-      <span v-if="loading" class="text-orange-500">○ Loading...</span>
-      <span v-else class="text-green-500">● Ready</span>
+      <span
+        v-if="loading"
+        class="text-orange-500"
+      >○ Loading...</span>
+      <span
+        v-else
+        class="text-green-500"
+      >● Ready</span>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { computed } from 'vue'
-import { useRoute } from 'vue-router'
+import {computed} from 'vue'
+import {useRoute} from 'vue-router'
 import useLoadModel from '~/hooks/useLoadModel'
 
-const { loading } = useLoadModel()
+const {loading} = useLoadModel()
 
 const route = useRoute()
 
