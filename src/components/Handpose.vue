@@ -1,5 +1,5 @@
 <script lang="ts">
-export default {name: 'handpose-component'}
+export default {name: 'HandposeComponent'}
 </script>
 
 <template>
@@ -7,7 +7,7 @@ export default {name: 'handpose-component'}
     <div className="ml-auto mr-auto relative w-[1280px] h-[720px]">
       <Webcam
         ref="webcamRef"
-        class-name="w-full h-full absolute"
+        className="w-full h-full absolute"
       />
       <canvas
         ref="canvasRef"
