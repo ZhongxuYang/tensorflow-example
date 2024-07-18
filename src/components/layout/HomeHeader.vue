@@ -1,35 +1,22 @@
 <template>
-  <div :class="`home-header ${bgColor}`">
-    <div class="flex justify-between">
+  <div class="home-header">
+    <div class="flex justify-between items-center">
       <ul class="links">
-        <li
-          v-for="it in dataList"
-          :key="it.path"
-          :title="it.description"
-        >
+        <li v-for="it in dataList" :key="it.path" :title="it.description">
           <router-link :to="it.path">
             {{ it.title }}
           </router-link>
         </li>
       </ul>
 
-      <div>
-        <a
-          :href="currentData?.doc"
-          target="_blank"
-          class="text-blue-500"
-        >Document</a>
+      <div class="urls">
+        <a :href="currentData?.doc" target="_blank">Document</a>
+        <!-- <a href="https://github.com/ZhongxuYang/tensorflow" target="_blank">Github</a> -->
       </div>
     </div>
-    <div class="text-center text-gray-400">
-      <span
-        v-if="loading"
-        class="text-orange-500"
-      >○ Loading...</span>
-      <span
-        v-else
-        class="text-green-500"
-      >● Ready</span>
+    <div class="text-center mt-2 text-gray-400">
+      <span v-if="loading" class="text-orange-600">○ Loading...</span>
+      <span v-else class="text-green-600">● Ready</span>
     </div>
   </div>
 </template>
@@ -71,23 +58,24 @@ const dataList = [
 ]
 
 const currentData = computed(() => dataList.find(it => it.path === route.path))
-const bgColor = computed(() => loading.value ? ['bg-orange-100'] : ['bg-green-100'])
 </script>
 
 <style lang="postcss" scoped>
 .home-header {
   @apply sticky top-0 left-0 p-2 z-50;
 
-  .links {
-    @apply flex justify-center;
+  .links, .urls {
+    @apply flex flex-wrap;
 
     a {
-      @apply bg-blue-200 text-white py-1 px-2 mx-1 rounded transition-all;
-
-      &.router-link-active {
-        @apply bg-blue-700;
+      @apply block text-purple-700 py-1 px-2 m-1 rounded transition-all;
+      &.router-link-active, &:hover {
+        @apply bg-purple-700 text-white shadow;
       }
     }
+  }
+  .urls {
+    @apply font-bold;
   }
 }
 </style>
