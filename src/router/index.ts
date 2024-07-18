@@ -22,6 +22,11 @@ const routes: RouteRecordRaw[] = [
     name: 'PoseDetection',
     component: () => import('~/components/PoseDetection.vue'),
   },
+  {
+    path: '/pose-detection-local',
+    name: 'PoseDetectionLocal',
+    component: () => import('~/components/PoseDetectionLocal.vue'),
+  },
 ]
 
 const router = createRouter({

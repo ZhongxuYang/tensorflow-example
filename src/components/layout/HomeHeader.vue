@@ -48,6 +48,12 @@ const dataList = [
     description: '姿势检测',
     doc: 'https://github.com/tensorflow/tfjs-models/tree/master/pose-detection',
   },
+  {
+    path: '/pose-detection-local',
+    title: 'Pose(Local)',
+    description: '姿势检测（本地模型）',
+    doc: 'https://github.com/tensorflow/tfjs-models/tree/master/pose-detection',
+  },
 ]
 
 const currentData = computed(() => dataList.find(it => it.path === route.path))
