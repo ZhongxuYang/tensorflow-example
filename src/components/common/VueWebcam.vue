@@ -12,7 +12,8 @@ import {ref, onMounted} from 'vue'
 const videoRef = ref()
 
 function userMedia() {
-  return navigator.mediaDevices.getUserMedia = navigator.mediaDevices.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || null
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  return navigator.mediaDevices.getUserMedia = navigator.mediaDevices.getUserMedia || (navigator as any).webkitGetUserMedia || (navigator as any).mozGetUserMedia || (navigator as any).msGetUserMedia || null
 }
 
 const startRecord = () => {
