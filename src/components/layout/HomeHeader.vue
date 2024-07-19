@@ -2,7 +2,11 @@
   <div class="home-header">
     <div class="flex justify-between items-center">
       <ul class="links">
-        <li v-for="it in dataList" :key="it.path" :title="it.description">
+        <li
+          v-for="it in dataList"
+          :key="it.path"
+          :title="it.description"
+        >
           <router-link :to="it.path">
             {{ it.title }}
           </router-link>
@@ -10,13 +14,22 @@
       </ul>
 
       <div class="urls">
-        <a :href="currentData?.doc" target="_blank">Document</a>
+        <a
+          :href="currentData?.doc"
+          target="_blank"
+        >Document</a>
         <!-- <a href="https://github.com/ZhongxuYang/tensorflow" target="_blank">Github</a> -->
       </div>
     </div>
     <div class="text-center mt-2 text-gray-400">
-      <span v-if="loading" class="text-orange-600">○ Loading...</span>
-      <span v-else class="text-green-600">● Ready</span>
+      <span
+        v-if="loading"
+        class="text-orange-600"
+      >○ Loading...</span>
+      <span
+        v-else
+        class="text-green-600"
+      >● Ready</span>
     </div>
   </div>
 </template>
