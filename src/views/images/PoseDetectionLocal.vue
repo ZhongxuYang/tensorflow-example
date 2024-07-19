@@ -16,10 +16,10 @@
 <script lang="ts" setup>
 import {ref, onMounted, onUnmounted} from 'vue'
 import * as tf from '@tensorflow/tfjs'
-import {PoseDetector, Keypoint} from '@tensorflow-models/pose-detection'
+import {PoseDetector, MoveNetModelConfig, Keypoint} from '@tensorflow-models/pose-detection'
 import * as poseDetection from '@tensorflow-models/pose-detection'
 import '@tensorflow/tfjs-backend-webgl'
-import Webcam from './common/VueWebcam.vue'
+import Webcam from '~/components/common/VueWebcam.vue'
 import useLoadModel from '~/hooks/useLoadModel'
 
 const {resetLoading, loaded} = useLoadModel()
@@ -36,8 +36,13 @@ const SCORE_THRESHOLD = 0.5
 let detector: PoseDetector, requestID: number // requestAnimationFrame
 
 const loadHandpose = async () => {
-  detector = await poseDetection.createDetector(model)
-  startDetect()
+  const detectorConfig: MoveNetModelConfig = {
+    modelUrl: '/tensorflow/models/pose-detection/movenet-tfjs-singlepose-lightning-v4/model.json',
+  }
+  detector = await poseDetection.createDetector(model, detectorConfig)
+  setTimeout(() => {
+    startDetect()
+  }, 500)
 }
 
 const startDetect = async () => {
@@ -63,6 +68,7 @@ const startDetect = async () => {
       // scoreThreshold: 0.5, // 置信度
       // nmsRadius: 20, // 非极大值抑制
     })
+    
     loaded()
     // 画第一个人的姿势 poses[0]
     // 画点

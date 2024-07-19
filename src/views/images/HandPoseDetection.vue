@@ -1,7 +1,3 @@
-<script lang="ts">
-export default {name: 'HandposeComponent'}
-</script>
-
 <template>
   <div class="flex items-center justify-center w-full flex-grow">
     <div class="ml-auto mr-auto relative w-[1280px] h-[720px]">
@@ -20,10 +16,11 @@ export default {name: 'HandposeComponent'}
 <script lang="ts" setup>
 import {ref, onMounted} from 'vue'
 import '@tensorflow/tfjs-backend-webgl'
-import * as handpose from '@tensorflow-models/handpose'
-import {HandPose} from '@tensorflow-models/handpose'
-import Webcam from './common/VueWebcam.vue'
-import {drawPose} from '~/utils/drawing-for-handpose'
+import * as handPoseDetection from '@tensorflow-models/hand-pose-detection'
+import {HandDetector} from '@tensorflow-models/hand-pose-detection'
+import {MediaPipeHandsMediaPipeModelConfig} from '@tensorflow-models/hand-pose-detection'
+import Webcam from '~/components/common/VueWebcam.vue'
+import {drawPose} from '~/utils/drawing-for-hand-pose-detection'
 import useLoadModel from '~/hooks/useLoadModel'
 
 const {resetLoading, loaded} = useLoadModel()
@@ -33,14 +30,20 @@ const webcamRef = ref<InstanceType<typeof Webcam>>()
 const canvasRef = ref<HTMLCanvasElement>()
 
 const loadHandpose = async () => {
-  const net = await handpose.load()
+  const model = handPoseDetection.SupportedModels.MediaPipeHands
+  const detectorConfig: MediaPipeHandsMediaPipeModelConfig = {
+    runtime: 'mediapipe', // or 'tfjs',
+    solutionPath: 'https://cdn.jsdelivr.net/npm/@mediapipe/hands',
+    modelType: 'full',
+  }
+  const net: HandDetector = await handPoseDetection.createDetector(model, detectorConfig)
 
   setInterval(() => {
     detectHand(net)
   }, 1)
 }
 
-const detectHand = async (net: HandPose) => {
+const detectHand = async (net: HandDetector) => {
   const webcam = webcamRef.value
   const canvas = canvasRef.value
   if (typeof webcam !== 'undefined' && webcam !== null && webcam.video!.readyState === 4) {
@@ -56,14 +59,13 @@ const detectHand = async (net: HandPose) => {
 
     const ctx = canvas!.getContext('2d') as CanvasRenderingContext2D
 
-    const hand = await net.estimateHands(video)
+    const hands = await net.estimateHands(video)
     loaded()
-    drawPose(hand, ctx)
+    drawPose(hands, ctx)
   }
 }
 
 onMounted(loadHandpose)
-
 </script>
 
 <style lang="postcss">

@@ -1,24 +1,24 @@
 <template>
   <div class="home-header">
     <div class="flex justify-between items-center">
-      <ul class="links">
-        <li
-          v-for="it in dataList"
-          :key="it.path"
-          :title="it.description"
-        >
-          <router-link :to="it.path">
-            {{ it.title }}
-          </router-link>
-        </li>
-      </ul>
+      <VueTabs
+        :active="route.name as string"
+        :data="dataList"
+        @change="handleChange"
+      />
 
       <div class="urls">
+        <router-link to="/home">
+          Home
+        </router-link>
         <a
           :href="currentData?.doc"
           target="_blank"
         >Document</a>
-        <!-- <a href="https://github.com/ZhongxuYang/tensorflow" target="_blank">Github</a> -->
+        <a
+          href="https://github.com/ZhongxuYang/tensorflow"
+          target="_blank"
+        >Github</a>
       </div>
     </div>
     <div class="text-center mt-2 text-gray-400">
@@ -36,59 +36,56 @@
 
 <script lang="ts" setup>
 import {computed} from 'vue'
-import {useRoute} from 'vue-router'
+import {useRoute, useRouter} from 'vue-router'
 import useLoadModel from '~/hooks/useLoadModel'
+import VueTabs from '~/components/common/VueTabs.vue'
+import type {Tab} from '~/components/common/VueTabs.vue'
 
 const {loading} = useLoadModel()
 
 const route = useRoute()
+const router = useRouter()
 
 const dataList = [
   {
-    path: '/handpose',
-    title: 'Single handed',
+    value: 'Handpose',
+    name: 'Single handed',
     description: '手部姿势检测（单手）',
     doc: 'https://github.com/tensorflow/tfjs-models/tree/master/handpose',
   },
   {
-    path: '/hand-pose-detection',
-    title: 'Multi handed',
+    value: 'HandPoseDetection',
+    name: 'Multi handed',
     description: '手部姿势检测（多手）',
     doc: 'https://github.com/tensorflow/tfjs-models/tree/master/hand-pose-detection',
   },
   {
-    path: '/pose-detection',
-    title: 'Pose',
+    value: 'PoseDetection',
+    name: 'Pose',
     description: '姿势检测',
     doc: 'https://github.com/tensorflow/tfjs-models/tree/master/pose-detection',
   },
   {
-    path: '/pose-detection-local',
-    title: 'Pose(Local)',
+    value: 'PoseDetectionLocal',
+    name: 'Pose(Local)',
     description: '姿势检测（本地模型）',
     doc: 'https://github.com/tensorflow/tfjs-models/tree/master/pose-detection',
   },
 ]
+const handleChange = (it: Tab) => router.push({name: it.value})
 
-const currentData = computed(() => dataList.find(it => it.path === route.path))
+const currentData = computed(() => dataList.find(it => it.value === route.name))
 </script>
 
 <style lang="postcss" scoped>
 .home-header {
   @apply sticky top-0 left-0 p-2 z-50;
 
-  .links, .urls {
-    @apply flex flex-wrap;
-
-    a {
-      @apply block text-purple-700 py-1 px-2 m-1 rounded transition-all;
-      &.router-link-active, &:hover {
-        @apply bg-purple-700 text-white shadow;
-      }
-    }
-  }
   .urls {
-    @apply font-bold;
+    @apply text-purple-700 font-bold;
+    a {
+      @apply inline-block mx-1;
+    }
   }
 }
 </style>
