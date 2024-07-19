@@ -1,0 +1,1 @@
+import{_ as o,r as n,o as r,k as t}from"./index-B6JO8PmD.js";const s={name:"ImagesIndex"};function c(a,_,p,i,m,d){const e=n("router-view");return r(),t(e)}const u=o(s,[["render",c]]);export{u as default};
