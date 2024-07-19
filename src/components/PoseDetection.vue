@@ -1,6 +1,6 @@
 <template>
-  <div className="flex items-center justify-center w-full flex-grow">
-    <div className="ml-auto mr-auto relative w-[1280px] h-[720px]">
+  <div class="flex items-center justify-center w-full flex-grow">
+    <div class="ml-auto mr-auto relative w-[1280px] h-[720px]">
       <Webcam
         ref="webcamRef"
         class="w-full h-full absolute"
